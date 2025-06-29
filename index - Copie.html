@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REX WSO2 API Manager - SACEM | Oxygenate France 2025</title>
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #FF7300; /* Orange WSO2 */
+            --secondary-color: #333333;
+            --accent-color: #00B4A0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+        
+        .hero-section {
+            background: url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') no-repeat center center;
+            background-size: cover;
+            height: 100vh;
+            position: relative;
+            color: white;
+        }
+        
+        .hero-overlay {
+            background: rgba(0,0,0,0.7);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+        }
+        
+        .speaker-card {
+            transition: all 0.3s ease;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .speaker-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 50px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--primary-color);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            border: 4px solid var(--primary-color);
+        }
+        
+        .stats-card {
+            border-radius: 10px;
+            padding: 30px;
+            color: white;
+            text-align: center;
+            transition: all 0.3s ease;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .stats-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .stats-card i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            padding: 10px 25px;
+            font-weight: bold;
+        }
+        
+        .btn-primary:hover {
+            background-color: #e56700;
+            border-color: #e56700;
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 50px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 50px;
+            height: 4px;
+            background: var(--primary-color);
+        }
+        
+        .nav-pills .nav-link.active {
+            background-color: var(--primary-color);
+        }
+        
+        .nav-pills .nav-link {
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+        
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .floating-shapes div {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="https://wso2.com/files/full-color-logo.svg" alt="WSO2" height="30">
+                <span class="ms-2">Oxygenate France 2025</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">Contexte</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#journey">Parcours</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#architecture">Architecture</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#results">Résultats</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#speaker">Speaker</a>
+                    </li>
+                </ul>
+                <a href="#contact" class="btn btn-primary ms-lg-3">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content container d-flex align-items-center">
+            <div class="row">
+                <div class="col-lg-8" data-aos="fade-right">
+                    <h1 class="display-3 fw-bold mb-4">Évolution vers une plateforme en self-service avec WSO2 API Manager</h1>
+                    <p class="lead mb-5">Retour d'expérience de la SACEM sur la transformation de sa gouvernance API</p>
+                    <div class="d-flex gap-3">
+                        <a href="#presentation" class="btn btn-primary btn-lg">Voir la présentation</a>
+                        <a href="#video" class="btn btn-outline-light btn-lg"><i class="fas fa-play me-2"></i>Voir la vidéo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Floating shapes animation -->
+        <div class="floating-shapes">
+            <div style="width: 100px; height: 100px; background: var(--primary-color); top: 20%; left: 10%; animation: float 15s infinite linear;"></div>
+            <div style="width: 150px; height: 150px; background: var(--accent-color); top: 60%; left: 80%; animation: float 20s infinite linear reverse;"></div>
+            <div style="width: 80px; height: 80px; background: white; top: 30%; left: 50%; animation: float 25s infinite linear;"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5 bg-white">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-right">
+                    <h2 class="section-title">Contexte SACEM</h2>
+                    <p class="lead">La SACEM, société de gestion des droits d'auteur dans le secteur musical, a initié sa transformation digitale avec WSO2 API Manager en 2018.</p>
+                    <p>L'objectif était de structurer et gouverner les échanges applicatifs au sein de la DSI, en passant d'une architecture on-premise à une plateforme hybride intégrant le cloud.</p>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Gestion des droits d'auteur pour 200 000 membres</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Transformation digitale de l'écosystème musical</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Besoin d'une gouvernance API robuste</li>
+                    </ul>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="SACEM Digital Transformation" class="img-fluid rounded shadow">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Journey Section -->
+    <section id="journey" class="py-5 bg-light">
+        <div class="container py-5">
+            <h2 class="text-center mb-5 section-title" data-aos="fade-up">Parcours d'évolution</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item" data-aos="fade-up">
+                    <h4>2018 - Lancement</h4>
+                    <p>Mise en place initiale de WSO2 API Manager en on-premise pour structurer les échanges applicatifs</p>
+                </div>
+                
+                <div class="timeline-item" data-aos="fade-up">
+                    <h4>2019 - Équipe transverse</h4>
+                    <p>Création d'une équipe dédiée à la gestion de la plateforme API</p>
+                </div>
+                
+                <div class="timeline-item" data-aos="fade-up">
+                    <h4>2020 - Haute disponibilité</h4>
+                    <p>Adoption d'une architecture haute disponibilité et début de l'hybridation cloud</p>
+                </div>
+                
+                <div class="timeline-item" data-aos="fade-up">
+                    <h4>2022 - Intégration SAFe</h4>
+                    <p>Alignement avec le framework agile à l'échelle et orientation vers des équipes produits</p>
+                </div>
+                
+                <div class="timeline-item" data-aos="fade-up">
+                    <h4>2024 - Self-service</h4>
+                    <p>Transition vers un modèle self-service avec gouvernance via workflows</p>
+                </div>
+                
+                <div class="timeline-item" data-aos="fade-up">
+                    <h4>2025 - Futur</h4>
+                    <p>Conteneurisation complète, montée de version vers WSO2 4.3 et intégration d'IA</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section id="architecture" class="py-5 bg-white">
+        <div class="container py-5">
+            <h2 class="text-center mb-5 section-title" data-aos="fade-up">Architecture et Innovations</h2>
+            
+            <div class="row">
+                <div class="col-lg-6 mb-4" data-aos="fade-right">
+                    <div class="card h-100 border-0 shadow">
+                        <div class="card-body">
+                            <i class="fas fa-project-diagram text-primary mb-3" style="font-size: 2.5rem;"></i>
+                            <h4>Modèle Self-Service</h4>
+                            <p>Autonomie des équipes métiers avec gouvernance stricte via des workflows validés, intégrés aux pipelines CI/CD.</p>
+                            <ul>
+                                <li>Publication simplifiée des API</li>
+                                <li>Déploiement automatisé</li>
+                                <li>Contrôle maintenu par la DSI</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 mb-4" data-aos="fade-left">
+                    <div class="card h-100 border-0 shadow">
+                        <div class="card-body">
+                            <i class="fas fa-network-wired text-primary mb-3" style="font-size: 2.5rem;"></i>
+                            <h4>Plateforme Hybride</h4>
+                            <p>Architecture combinant on-premise et cloud pour une flexibilité maximale.</p>
+                            <ul>
+                                <li>Haute disponibilité garantie</li>
+                                <li>Scalabilité élastique</li>
+                                <li>Sécurité renforcée</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5" data-aos="fade-up">
+                <img src="https://wso2.com/api-manager/wp-content/uploads/sites/2/2020/09/wso2-api-manager-architecture.png" alt="WSO2 Architecture" class="img-fluid rounded shadow" style="max-height: 400px;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section id="results" class="py-5 bg-primary text-white">
+        <div class="container py-5">
+            <h2 class="text-center mb-5 section-title text-white" data-aos="fade-up">Résultats Concrets</h2>
+            
+            <div class="row text-center">
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="stats-card bg-dark">
+                        <i class="fas fa-plug"></i>
+                        <h3 class="display-4">150+</h3>
+                        <p class="lead">APIs en production</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stats-card bg-dark">
+                        <i class="fas fa-exchange-alt"></i>
+                        <h3 class="display-4">80M</h3>
+                        <p class="lead">Requêtes/mois</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="stats-card bg-dark">
+                        <i class="fas fa-rocket"></i>
+                        <h3 class="display-4">4x</h3>
+                        <p class="lead">Accélération déploiement</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-lg-6 mb-4" data-aos="fade-right">
+                    <h3>Perspectives futures</h3>
+                    <div class="card bg-dark border-0">
+                        <div class="card-body">
+                            <ul class="list-unstyled">
+                                <li class="mb-3"><i class="fas fa-arrow-right text-primary me-2"></i> Conteneurisation complète on-premise</li>
+                                <li class="mb-3"><i class="fas fa-arrow-right text-primary me-2"></i> Montée de version vers WSO2 4.3</li>
+                                <li class="mb-3"><i class="fas fa-arrow-right text-primary me-2"></i> Intégration croissante d'IA</li>
+                                <li><i class="fas fa-arrow-right text-primary me-2"></i> Amélioration des usages et productivité</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 mb-4" data-aos="fade-left">
+                    <h3>Bénéfices métiers</h3>
+                    <div class="card bg-dark border-0">
+                        <div class="card-body">
+                            <ul class="list-unstyled">
+                                <li class="mb-3"><i class="fas fa-check-circle text-primary me-2"></i> Réduction du time-to-market</li>
+                                <li class="mb-3"><i class="fas fa-check-circle text-primary me-2"></i> Autonomie des équipes produits</li>
+                                <li class="mb-3"><i class="fas fa-check-circle text-primary me-2"></i> Gouvernance maintenue</li>
+                                <li><i class="fas fa-check-circle text-primary me-2"></i> Alignement avec la stratégie digitale</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Speaker Section -->
+    <section id="speaker" class="py-5 bg-light">
+        <div class="container py-5">
+            <h2 class="text-center mb-5 section-title" data-aos="fade-up">Intervenant</h2>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card speaker-card border-0" data-aos="flip-left">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="https://randomuser.me/api/portraits/men/42.jpg" class="img-fluid rounded-start h-100" alt="Johan Brelet" style="object-fit: cover;">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h3 class="card-title">Johan Brelet</h3>
+                                    <p class="card-subtitle text-muted mb-3">Architecte système principal, SACEM</p>
+                                    <p class="card-text">Avec plus de 15 ans d'expérience dans l'architecture des systèmes d'information, Johan a piloté la transformation API de la SACEM depuis ses débuts en 2018.</p>
+                                    <p class="card-text">Expert en intégration et middleware, il accompagne les équipes dans l'adoption des bonnes pratiques API et l'évolution vers le self-service.</p>
+                                    <div class="d-flex gap-3 mt-4">
+                                        <a href="#" class="btn btn-primary"><i class="fab fa-linkedin me-2"></i> LinkedIn</a>
+                                        <a href="#" class="btn btn-outline-secondary"><i class="fas fa-envelope me-2"></i> Contact</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section id="video" class="py-5 bg-white">
+        <div class="container py-5">
+            <h2 class="text-center mb-5 section-title" data-aos="fade-up">Vidéo de la présentation</h2>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="ratio ratio-16x9 shadow-lg" data-aos="zoom-in">
+                        <iframe src="https://www.youtube.com/embed/example" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 bg-dark text-white">
+        <div class="container py-5">
+            <h2 class="text-center mb-5 section-title" data-aos="fade-up">En savoir plus</h2>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <form data-aos="fade-up">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control bg-secondary border-0 text-white" placeholder="Nom" required>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="email" class="form-control bg-secondary border-0 text-white" placeholder="Email" required>
+                            </div>
+                            <div class="col-12">
+                                <input type="text" class="form-control bg-secondary border-0 text-white" placeholder="Sujet">
+                            </div>
+                            <div class="col-12">
+                                <textarea class="form-control bg-secondary border-0 text-white" rows="5" placeholder="Message" required></textarea>
+                            </div>
+                            <div class="col-12 text-center">
+                                <button type="submit" class="btn btn-primary btn-lg">Envoyer le message</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4 bg-black text-white">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <img src="https://wso2.com/files/full-color-logo.svg" alt="WSO2" height="30">
+                    <span class="ms-2">Oxygenate France 2025</span>
+                </div>
+                <div class="col-md-6 text-md-end mt-3 mt-md-0">
+                    <p class="mb-0">© 2025 WSO2 Conference. Tous droits réservés.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS animation
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+        
+        // Floating shapes animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const shapes = document.querySelectorAll('.floating-shapes div');
+            
+            shapes.forEach((shape, index) => {
+                const duration = 15 + (index * 5);
+                shape.style.animationDuration = `${duration}s`;
+            });
+        });
+        
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
